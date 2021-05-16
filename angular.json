@@ -126,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "khong-gian-truyen-admin-frontend"
+  "defaultProject": "khong-gian-truyen-admin-frontend",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
