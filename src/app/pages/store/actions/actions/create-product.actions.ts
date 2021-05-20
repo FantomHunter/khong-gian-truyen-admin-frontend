@@ -1,15 +1,17 @@
 import { createAction, props } from '@ngrx/store';
+import { ProductItem } from 'src/app/core/model/product-item.model';
 
 export const createProducts = createAction(
-  '[CreateProduct] Load CreateProducts'
+  '[CreateProduct] CreateProducts',
+  props<{ product: ProductItem }>()
 );
 
 export const createProductsSuccess = createAction(
-  '[CreateProduct] Load CreateProducts Success',
-  props<{ data: any }>()
+  '[CreateProduct] CreateProducts Success',
+  props<{ product: ProductItem }>()
 );
 
 export const createProductsFailure = createAction(
-  '[CreateProduct] Load CreateProducts Failure',
+  '[CreateProduct] CreateProducts Failure',
   props<{ error: any }>()
 );

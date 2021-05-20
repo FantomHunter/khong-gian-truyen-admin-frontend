@@ -1,7 +1,7 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { ProductItem } from 'src/app/core/model/product-item.model';
-import { AllProductAction } from '../actions';
+import { AllProductAction, CreateProductAction } from '../actions';
 
 export const allProductFeatureKey = 'allProduct';
 
@@ -24,6 +24,9 @@ export const reducer = createReducer(
   initialState,
   on(AllProductAction.loadAllProductsSuccess, (state, { products }) =>
     adapter.setAll(products, state)
+  ),
+  on(CreateProductAction.createProductsSuccess, (state, { product }) =>
+    adapter.addOne(product, state)
   )
 );
 export const { selectIds, selectEntities, selectAll, selectTotal } =

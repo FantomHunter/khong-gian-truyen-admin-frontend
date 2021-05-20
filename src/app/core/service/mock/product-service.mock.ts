@@ -193,7 +193,11 @@ export class ProductServiceMock extends ProductServiceApi {
     },
   ];
   createProduct(product: ProductItem): Observable<ProductItem> {
-    throw new Error('Method not implemented.');
+    this.EXAMPLE_DATA = this.EXAMPLE_DATA.concat({
+      ...product,
+      id: this.EXAMPLE_DATA[this.EXAMPLE_DATA.length - 1].id + 1,
+    });
+    return of(this.EXAMPLE_DATA[this.EXAMPLE_DATA.length - 1]).pipe(delay(2000));
   }
   getAllProduct(): Observable<ProductItem[]> {
     return of(this.EXAMPLE_DATA).pipe(delay(2000));

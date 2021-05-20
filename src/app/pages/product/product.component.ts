@@ -9,7 +9,7 @@ import { ProductItem } from 'src/app/core/model/product-item.model';
 import { ProductStatus } from 'src/app/core/model/product-status.enum';
 import { ProductType } from 'src/app/core/model/product-type.enum';
 import { TableDataSource } from './table-datasource';
-import { AllProductAction } from '../store/actions/actions';
+import { AllProductAction, CreateProductAction } from '../store/actions/actions';
 
 interface StatusOption {
   value: ProductStatus;
@@ -95,6 +95,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
 
   onCreateNewProduct(): void {
     console.log('product form', this.createProductForm.value);
+    this.store.dispatch(CreateProductAction.createProducts({product: {...this.createProductForm.value}}))
   }
 
   getValueOfProductStatus(statusOrder: number): string {
