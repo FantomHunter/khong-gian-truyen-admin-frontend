@@ -9,7 +9,7 @@ import { ProductItem } from 'src/app/core/model/product-item.model';
 import { ProductStatus } from 'src/app/core/model/product-status.enum';
 import { ProductType } from 'src/app/core/model/product-type.enum';
 import { TableDataSource } from './table-datasource';
-import { AllProductAction, CreateProductAction } from '../store/actions/actions';
+import { AllProductAction, CreateProductAction, DeleteProductAction } from '../store/actions/actions';
 
 interface StatusOption {
   value: ProductStatus;
@@ -91,6 +91,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
 
   onDeleteItem(id: any): void {
     console.log(id);
+    this.store.dispatch(DeleteProductAction.loadDeleteProducts({id}));
   }
 
   onCreateNewProduct(): void {

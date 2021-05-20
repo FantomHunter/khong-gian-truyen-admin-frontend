@@ -100,7 +100,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
       <td mat-cell *matCellDef="let row">
         <button mat-raised-button color="primary" (click)="onEditItem(row)">Edit</button>
-        <button mat-raised-button color="accent" (click)="onEditItem(row)">Delete</button>
+        <button mat-raised-button color="accent" (click)="onDeleteItem(row.id)">Delete</button>
       </td>
     </ng-container>
 

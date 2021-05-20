@@ -14,6 +14,7 @@ import * as fromAllProduct from './store/actions/reducers/all-product.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AllProductEffects } from './store/actions/effects/all-product.effects';
 import { CreateProductEffects } from './store/actions/effects/create-product.effects';
+import { DeleteProductEffects } from './store/actions/effects/delete-product.effects';
 
 @NgModule({
   declarations: [PagesComponent, HomeComponent, ProductComponent],
@@ -24,7 +25,7 @@ import { CreateProductEffects } from './store/actions/effects/create-product.eff
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forFeature(fromAllProduct.allProductFeatureKey, fromAllProduct.reducer),
-    EffectsModule.forFeature([AllProductEffects, CreateProductEffects]),
+    EffectsModule.forFeature([AllProductEffects, CreateProductEffects, DeleteProductEffects]),
   ],
   providers: [
     {

@@ -197,9 +197,17 @@ export class ProductServiceMock extends ProductServiceApi {
       ...product,
       id: this.EXAMPLE_DATA[this.EXAMPLE_DATA.length - 1].id + 1,
     });
-    return of(this.EXAMPLE_DATA[this.EXAMPLE_DATA.length - 1]).pipe(delay(2000));
+    return of(this.EXAMPLE_DATA[this.EXAMPLE_DATA.length - 1]).pipe(
+      delay(2000)
+    );
   }
+
   getAllProduct(): Observable<ProductItem[]> {
     return of(this.EXAMPLE_DATA).pipe(delay(2000));
+  }
+
+  deleteProduct(id: number): Observable<boolean> {
+    this.EXAMPLE_DATA = this.EXAMPLE_DATA.filter(product => product.id != id);
+    return of(true);
   }
 }
