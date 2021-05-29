@@ -1,18 +1,11 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngAfterViewInit(): void {
-    throw new Error('Method not implemented.');
-  }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
