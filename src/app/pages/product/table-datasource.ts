@@ -5,7 +5,7 @@ import { select, Store } from '@ngrx/store';
 import { merge, Observable } from 'rxjs';
 import { map, startWith, switchMap } from 'rxjs/operators';
 import { ProductItem } from 'src/app/core/model/product-item.model';
-import { AllproductSelector } from '../store/actions/selectors';
+import { AllproductSelector } from '../store/selectors';
 
 
 

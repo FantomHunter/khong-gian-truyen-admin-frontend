@@ -13,10 +13,10 @@ import { HomeComponent } from './home/home.component';
 import { PagesRoutingModule } from './pages-routing.module';
 import { PagesComponent } from './pages.component';
 import { ProductComponent } from './product/product.component';
-import { AllProductEffects } from './store/actions/effects/all-product.effects';
-import { CreateProductEffects } from './store/actions/effects/create-product.effects';
-import { DeleteProductEffects } from './store/actions/effects/delete-product.effects';
-import * as fromAllProduct from './store/actions/reducers/all-product.reducer';
+import { AllProductEffects } from './store/effects/all-product.effects';
+import { CreateProductEffects } from './store/effects/create-product.effects';
+import { DeleteProductEffects } from './store/effects/delete-product.effects';
+import * as fromAllProduct from './store/reducers/all-product.reducer';
 
 @NgModule({
   declarations: [PagesComponent, HomeComponent, ProductComponent],

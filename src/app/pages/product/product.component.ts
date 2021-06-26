@@ -13,7 +13,7 @@ import {
   AllProductAction,
   CreateProductAction,
   DeleteProductAction,
-} from '../store/actions/actions';
+} from '../store/actions';
 
 interface StatusOption {
   value: ProductStatus;
