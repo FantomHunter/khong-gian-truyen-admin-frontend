@@ -4,9 +4,13 @@
       <mat-card-title>Create New Product</mat-card-title>
       <mat-card-subtitle>Generation Form</mat-card-subtitle>
     </mat-card-header>
-    <form [formGroup]="createProductForm" (ngSubmit)="onCreateNewProduct()">
+    <form [formGroup]="createProductForm" (ngSubmit)="onSubmitProductForm()">
       <mat-card-content fxLayoutAlign="center">
         <div fxLayout="column" fxLayoutAlign="center" fxFlex=80>
+          <mat-form-field appearance="fill" fxShow="{{ isEditing}}">
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="id">
+          </mat-form-field>
           <mat-form-field appearance="fill">
             <mat-label>Name</mat-label>
             <input matInput formControlName="name">
@@ -44,7 +48,7 @@
         </div>
       </mat-card-content>
       <mat-card-actions fxLayoutAlign="center">
-        <button mat-raised-button color="primary" type="submit">Create</button>
+        <button mat-raised-button color="primary" type="submit">{{isEditing? 'Update': 'Create'}}</button>
         <button mat-raised-button color="accent" type="button" (click)="onResetForm()">{{ isEditing? 'Cancel':
           'Reset'}}</button>
       </mat-card-actions>
@@ -68,7 +72,8 @@
     <!-- Image Column -->
     <ng-container matColumnDef="imageUrl">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Image</th>
-      <td mat-cell *matCellDef="let row"> <img src="{{row.imageUrl}}" alt="Product Image" srcset="" width="50" height="50" > </td>
+      <td mat-cell *matCellDef="let row"> <img src="{{row.imageUrl}}" alt="Product Image" srcset="" width="50"
+          height="50"> </td>
     </ng-container>
 
     <!-- Publish Date Column -->

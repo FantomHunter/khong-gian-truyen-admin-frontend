@@ -9,7 +9,11 @@ import { ProductItem } from 'src/app/core/model/product-item.model';
 import { ProductStatus } from 'src/app/core/model/product-status.enum';
 import { ProductType } from 'src/app/core/model/product-type.enum';
 import { TableDataSource } from './table-datasource';
-import { AllProductAction, CreateProductAction, DeleteProductAction } from '../store/actions/actions';
+import {
+  AllProductAction,
+  CreateProductAction,
+  DeleteProductAction,
+} from '../store/actions/actions';
 
 interface StatusOption {
   value: ProductStatus;
@@ -57,9 +61,10 @@ export class ProductComponent implements OnInit, AfterViewInit {
   createProductForm: FormGroup;
 
   isEditing = false;
-  constructor(private fb: FormBuilder,private store: Store) {
+  constructor(private fb: FormBuilder, private store: Store) {
     this.dataSource = new TableDataSource(store);
     this.createProductForm = fb.group({
+      id: [-1],
       name: ['', Validators.required],
       totalChapter: ['', Validators.required],
       imageUrl: ['', Validators.required],
@@ -91,12 +96,20 @@ export class ProductComponent implements OnInit, AfterViewInit {
 
   onDeleteItem(id: any): void {
     console.log(id);
-    this.store.dispatch(DeleteProductAction.loadDeleteProducts({id}));
+    this.store.dispatch(DeleteProductAction.loadDeleteProducts({ id }));
   }
 
-  onCreateNewProduct(): void {
-    console.log('product form', this.createProductForm.value);
-    this.store.dispatch(CreateProductAction.createProducts({product: {...this.createProductForm.value}}))
+  onSubmitProductForm(): void {
+    if (this.isEditing == false) {
+      console.log('create product', this.createProductForm.value);
+      this.store.dispatch(
+        CreateProductAction.createProducts({
+          product: { ...this.createProductForm.value },
+        })
+      );
+    }else {
+      console.log('udpate product', this.createProductForm.value);
+    }
   }
 
   getValueOfProductStatus(statusOrder: number): string {
