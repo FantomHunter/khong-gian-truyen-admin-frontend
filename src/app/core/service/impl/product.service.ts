@@ -64,7 +64,24 @@ export class ProductService extends ProductServiceApi {
   }
 
   updateProduct(product: ProductItem): Observable<ProductItem> {
-    throw new Error('Method not implemented.');
+    const body = {
+      product: {
+        id: product.id,
+        description: 'product create from admin page',
+        imageUrl: product.imageUrl,
+        name: product.name,
+        publishDate: product.publishDate,
+        status: ProductStatus[product.status],
+        totalChapter: product.totalChapter,
+        type: ProductType[product.type],
+      },
+    };
+    return this.httpClient
+      .put<any>(
+        'https://khong-gian-truyen-backend.herokuapp.com/product/',
+        body
+      )
+      .pipe(map((response) => this.convert(response.product)));
   }
 
   constructor(private httpClient: HttpClient) {

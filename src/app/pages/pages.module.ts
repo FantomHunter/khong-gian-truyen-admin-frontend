@@ -42,7 +42,7 @@ import * as fromAllProduct from './store/reducers/all-product.reducer';
   providers: [
     {
       provide: ProductServiceApi,
-      useClass: !environment ? ProductServiceMock : ProductServiceMock,
+      useClass: !environment ? ProductService : ProductService,
     },
   ],
 })

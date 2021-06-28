@@ -7,7 +7,7 @@
     <form [formGroup]="createProductForm" (ngSubmit)="onSubmitProductForm()">
       <mat-card-content fxLayoutAlign="center">
         <div fxLayout="column" fxLayoutAlign="center" fxFlex=80>
-          <mat-form-field appearance="fill" fxShow="{{ isEditing}}">
+          <mat-form-field appearance="fill" fxShow="false">
             <mat-label>ID</mat-label>
             <input matInput formControlName="id">
           </mat-form-field>
