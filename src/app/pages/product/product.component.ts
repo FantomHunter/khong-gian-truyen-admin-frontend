@@ -64,7 +64,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
   constructor(private fb: FormBuilder, private store: Store) {
     this.dataSource = new TableDataSource(store);
     this.createProductForm = fb.group({
-      id: [-1],
+      id: [{ value: -1, disabled: true }],
       name: ['', Validators.required],
       totalChapter: ['', Validators.required],
       imageUrl: ['', Validators.required],
@@ -107,7 +107,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
           product: { ...this.createProductForm.value },
         })
       );
-    }else {
+    } else {
       console.log('udpate product', this.createProductForm.value);
     }
   }
