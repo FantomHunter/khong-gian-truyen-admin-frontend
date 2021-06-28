@@ -13,6 +13,7 @@ import {
   AllProductAction,
   CreateProductAction,
   DeleteProductAction,
+  UpdateProductAction,
 } from '../store/actions';
 
 interface StatusOption {
@@ -64,7 +65,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
   constructor(private fb: FormBuilder, private store: Store) {
     this.dataSource = new TableDataSource(store);
     this.createProductForm = fb.group({
-      id: [{ value: -1, disabled: true }],
+      id: [-1],
       name: ['', Validators.required],
       totalChapter: ['', Validators.required],
       imageUrl: ['', Validators.required],
@@ -108,7 +109,12 @@ export class ProductComponent implements OnInit, AfterViewInit {
         })
       );
     } else {
-      console.log('udpate product', this.createProductForm.value);
+      console.log('update product', this.createProductForm.value);
+      this.store.dispatch(
+        UpdateProductAction.loadUpdateProducts({
+          product: this.createProductForm.value,
+        })
+      );
     }
   }
 

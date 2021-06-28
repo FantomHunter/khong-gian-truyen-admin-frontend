@@ -62,6 +62,11 @@ export class ProductService extends ProductServiceApi {
       totalChapter: element.totalChapter,
     };
   }
+
+  updateProduct(product: ProductItem): Observable<ProductItem> {
+    throw new Error('Method not implemented.');
+  }
+
   constructor(private httpClient: HttpClient) {
     super();
   }

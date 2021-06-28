@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { ProductItem } from '../../model/product-item.model';
 import { ProductStatus } from '../../model/product-status.enum';
@@ -207,7 +207,24 @@ export class ProductServiceMock extends ProductServiceApi {
   }
 
   deleteProduct(id: number): Observable<boolean> {
-    this.EXAMPLE_DATA = this.EXAMPLE_DATA.filter(product => product.id != id);
+    this.EXAMPLE_DATA = this.EXAMPLE_DATA.filter((product) => product.id != id);
     return of(true);
+  }
+
+  updateProduct(product: ProductItem): Observable<ProductItem> {
+    const foundIndex = this.EXAMPLE_DATA.findIndex((e) => e.id === product.id);
+    console.log(
+      'update product: ',
+      this.EXAMPLE_DATA.slice().splice(foundIndex, 1)
+    );
+
+    if (foundIndex === -1) {
+      return throwError('Product Id not found');
+    }
+    // this.events[foundIndex] = { ...this.events[foundIndex], time: event.time, title: event.title };
+    this.EXAMPLE_DATA = this.EXAMPLE_DATA.slice();
+    this.EXAMPLE_DATA.splice(foundIndex, 1, product);
+    console.log('update event: ', this.EXAMPLE_DATA.slice());
+    return of(product).pipe(delay(2000));
   }
 }

@@ -1,3 +1,4 @@
+import { UpdateProductEffects } from './store/effects/update-product.effects';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -35,12 +36,13 @@ import * as fromAllProduct from './store/reducers/all-product.reducer';
       AllProductEffects,
       CreateProductEffects,
       DeleteProductEffects,
+      UpdateProductEffects,
     ]),
   ],
   providers: [
     {
       provide: ProductServiceApi,
-      useClass: !environment ? ProductService : ProductService,
+      useClass: !environment ? ProductServiceMock : ProductServiceMock,
     },
   ],
 })
