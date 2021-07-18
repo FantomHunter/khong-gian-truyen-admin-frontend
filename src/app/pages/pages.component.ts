@@ -17,6 +17,10 @@ export class PagesComponent implements OnInit {
       routerLink: '/product',
     },
     {
+      text: 'Category',
+      routerLink: '/category',
+    },
+    {
       text: 'User',
       routerLink: '/user',
     },

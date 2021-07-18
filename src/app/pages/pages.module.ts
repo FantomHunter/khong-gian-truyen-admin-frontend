@@ -18,9 +18,10 @@ import { AllProductEffects } from './store/effects/all-product.effects';
 import { CreateProductEffects } from './store/effects/create-product.effects';
 import { DeleteProductEffects } from './store/effects/delete-product.effects';
 import * as fromAllProduct from './store/reducers/all-product.reducer';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
-  declarations: [PagesComponent, HomeComponent, ProductComponent],
+  declarations: [PagesComponent, HomeComponent, ProductComponent, CategoryComponent],
   imports: [
     CommonModule,
     HttpClientModule,

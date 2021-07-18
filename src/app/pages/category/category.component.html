@@ -1,0 +1,58 @@
+<div fxLayout="row" fxLayoutAlign="center">
+  <mat-card class="example-card" fxFlex.gt-md=50 fxFlex.md=80 fxFlex.sm=80 fxFlex.lt-sm=100>
+    <mat-card-header>
+      <mat-card-title>Create New Category</mat-card-title>
+      <mat-card-subtitle>Generation Form</mat-card-subtitle>
+    </mat-card-header>
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmitCategoryForm()">
+      <mat-card-content fxLayoutAlign="center">
+        <div fxLayout="column" fxLayoutAlign="center" fxFlex=80>
+          <mat-form-field appearance="fill" fxShow="false">
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="id">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions fxLayoutAlign="center">
+        <button mat-raised-button color="primary" type="submit">{{isEditing? 'Update': 'Create'}}</button>
+        <button mat-raised-button color="accent" type="button" (click)="onResetForm()">{{ isEditing? 'Cancel':
+          'Reset'}}</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>
+<div class="mat-elevation-z8">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let row">{{row.id}}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-raised-button color="primary" (click)="onEditItem(row)">Edit</button>
+        <button mat-raised-button color="accent" (click)="onDeleteItem(row.id)">Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator [length]="(dataSource?.data$|async)?.length" [pageIndex]="0" [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 20]">
+  </mat-paginator>
+</div>
