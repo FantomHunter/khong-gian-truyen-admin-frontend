@@ -29,7 +29,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## schematic command
 
 ```
-ng g reducer pages/store/reducers/all-category --api --creators --feature --flat true --module pages.module.ts --skip-tests --dry-run
+ng g action pages/store/actions/all-category --api --creators --flat --skip-tests
 
-ng g effect pages/store/effects/all-category --api --creators --module pages/pages.module.ts --flat true --skip-test --dry-run
+ng g reducer pages/store/reducers/all-category --api --creators --feature --flat true --module pages/pages.module.ts --skip-tests --dry-run
+
+ng g effect pages/store/effects/all-category --api --creators --module pages/pages.module.ts --flat true --skip-tests --dry-run
 ```

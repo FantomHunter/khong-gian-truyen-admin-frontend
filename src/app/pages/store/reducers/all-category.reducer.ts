@@ -1,7 +1,7 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
 import { CategoryItem } from 'src/app/core/model/category-item.model';
-import { AllCategoryAction } from '../actions';
+import { AllCategoryAction, CreateCategoryAction } from '../actions';
 
 export const allCategoryFeatureKey = 'allCategory';
 
@@ -18,7 +18,11 @@ export const reducer = createReducer(
   initialState,
   on(AllCategoryAction.loadAllCategoriesSuccess, (state, { categories }) =>
     adapter.setAll(categories, state)
+  ),
+  on(CreateCategoryAction.loadCreateCategorySuccess, (state, { category }) =>
+    adapter.addOne(category, state)
   )
 );
 
-export const { selectIds, selectEntities, selectAll, selectTotal } = adapter.getSelectors();
+export const { selectIds, selectEntities, selectAll, selectTotal } =
+  adapter.getSelectors();
