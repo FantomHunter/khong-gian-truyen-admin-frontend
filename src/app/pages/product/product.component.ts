@@ -1,20 +1,20 @@
-import { Store } from '@ngrx/store';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { Store } from '@ngrx/store';
 import * as moment from 'moment';
 import { ProductItem } from 'src/app/core/model/product-item.model';
 import { ProductStatus } from 'src/app/core/model/product-status.enum';
 import { ProductType } from 'src/app/core/model/product-type.enum';
-import { TableDataSource } from './table-datasource';
 import {
   AllProductAction,
   CreateProductAction,
   DeleteProductAction,
-  UpdateProductAction,
+  UpdateProductAction
 } from '../store/actions';
+import { TableDataSourceProduct } from './table-datasouce.product';
 
 interface StatusOption {
   value: ProductStatus;
@@ -34,7 +34,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<ProductItem>;
-  dataSource: TableDataSource;
+  dataSource: TableDataSourceProduct;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = [
@@ -63,7 +63,7 @@ export class ProductComponent implements OnInit, AfterViewInit {
 
   isEditing = false;
   constructor(private fb: FormBuilder, private store: Store) {
-    this.dataSource = new TableDataSource(store);
+    this.dataSource = new TableDataSourceProduct(store);
     this.createProductForm = fb.group({
       id: [-1],
       name: ['', Validators.required],
