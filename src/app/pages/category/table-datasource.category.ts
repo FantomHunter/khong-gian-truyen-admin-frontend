@@ -1,17 +1,19 @@
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { CategoryItem } from 'src/app/core/model/category-item.model';
 import { TableDataSource } from 'src/app/material/table-datasource';
+import { AllCategorySeletor } from '../store/selectors';
 
 export class TableDataSourceCategory extends TableDataSource<CategoryItem> {
   constructor(private store: Store) {
-    super(
-      of([
-        { id: 1, name: 'Action' },
-        { id: 2, name: 'Fantasy' },
-      ])
-    );
+    // super(
+    //   of([
+    //     { id: 1, name: 'Action' },
+    //     { id: 2, name: 'Fantasy' },
+    //   ])
+    //  );
+    super(store.pipe(select(AllCategorySeletor.selectAllCategory)))
   }
   getSortedData(data: CategoryItem[]): CategoryItem[] {
     if (!this.sort || !this.sort.active || this.sort.direction === '') {

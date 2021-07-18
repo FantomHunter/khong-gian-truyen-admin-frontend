@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { CategoryItem } from 'src/app/core/model/category-item.model';
+import { AllCategoryAction } from '../store/actions';
 import { TableDataSourceCategory } from './table-datasource.category';
 
 @Component({
@@ -35,7 +36,9 @@ export class CategoryComponent implements OnInit, AfterViewInit {
     this.table.dataSource = this.dataSource;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store.dispatch(AllCategoryAction.loadAllCategories());
+  }
 
   onSubmitCategoryForm(): void {}
 

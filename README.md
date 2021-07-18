@@ -25,3 +25,11 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## schematic command
+
+```
+ng g reducer pages/store/reducers/all-category --api --creators --feature --flat true --module pages.module.ts --skip-tests --dry-run
+
+ng g effect pages/store/effects/all-category --api --creators --module pages/pages.module.ts --flat true --skip-test --dry-run
+```
