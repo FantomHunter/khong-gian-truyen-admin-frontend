@@ -24,4 +24,9 @@ export class CategoryServiceMock extends CategoryServiceApi {
       delay(2000)
     );
   }
+
+  deleteCategory(id: number): Observable<boolean> {
+    this.EXAMPLE_DATA = this.EXAMPLE_DATA.filter((product) => product.id !== id);
+    return of(true);
+  }
 }

@@ -5,7 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { CategoryItem } from 'src/app/core/model/category-item.model';
-import { AllCategoryAction, CreateCategoryAction } from '../store/actions';
+import { AllCategoryAction, CreateCategoryAction, DeleteCategoryAction } from '../store/actions';
 import { TableDataSourceCategory } from './table-datasource.category';
 
 @Component({
@@ -65,7 +65,6 @@ export class CategoryComponent implements OnInit, AfterViewInit {
   }
 
   onDeleteItem(id: number): void {
-    console.log(id);
-    // this.store.dispatch(DeleteProductAction.loadDeleteProducts({ id }));
+    this.store.dispatch(DeleteCategoryAction.loadDeleteCategorys({ id }));
   }
 }

@@ -24,6 +24,7 @@ import * as fromAllProduct from './store/reducers/all-product.reducer';
 import * as fromAllCategory from './store/reducers/all-category.reducer';
 import { AllCategoryEffects } from './store/effects/all-category.effects';
 import { CreateCategoryEffects } from './store/effects/create-category.effects';
+import { DeleteCategoryEffects } from './store/effects/delete-category.effects';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { CreateCategoryEffects } from './store/effects/create-category.effects';
       UpdateProductEffects,
       AllCategoryEffects,
       CreateCategoryEffects,
+      DeleteCategoryEffects,
     ]),
     StoreModule.forFeature(fromAllCategory.allCategoryFeatureKey, fromAllCategory.reducer),
     StoreModule.forFeature(fromAllCategory.allCategoryFeatureKey, fromAllCategory.reducer),
