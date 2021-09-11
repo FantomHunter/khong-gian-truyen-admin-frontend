@@ -53,17 +53,25 @@ import { DeleteCategoryEffects } from './store/effects/delete-category.effects';
       CreateCategoryEffects,
       DeleteCategoryEffects,
     ]),
-    StoreModule.forFeature(fromAllCategory.allCategoryFeatureKey, fromAllCategory.reducer),
-    StoreModule.forFeature(fromAllCategory.allCategoryFeatureKey, fromAllCategory.reducer),
+    StoreModule.forFeature(
+      fromAllCategory.allCategoryFeatureKey,
+      fromAllCategory.reducer
+    ),
+    StoreModule.forFeature(
+      fromAllCategory.allCategoryFeatureKey,
+      fromAllCategory.reducer
+    ),
   ],
   providers: [
     {
       provide: ProductServiceApi,
-      useClass: !environment.production ? ProductServiceMock : ProductService,
+      useClass: environment.useMockService
+        ? ProductServiceMock
+        : ProductService,
     },
     {
       provide: CategoryServiceApi,
-      useClass: !environment.production
+      useClass: environment.useMockService
         ? CategoryServiceMock
         : CategoryServiceMock,
     },

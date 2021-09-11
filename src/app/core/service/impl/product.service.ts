@@ -3,6 +3,7 @@ import { ElementSchemaRegistry } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { ProductItem } from '../../model/product-item.model';
 import { ProductStatus } from '../../model/product-status.enum';
 import { ProductType } from '../../model/product-type.enum';
@@ -24,7 +25,7 @@ export class ProductService extends ProductServiceApi {
     };
     return this.httpClient
       .post<any>(
-        'https://khong-gian-truyen-backend.herokuapp.com/product',
+        environment.backendUrl + '/product',
         body
       )
       .pipe(map((response) => this.convert(response.product)));
@@ -32,7 +33,7 @@ export class ProductService extends ProductServiceApi {
   getAllProduct(): Observable<ProductItem[]> {
     return this.httpClient
       .get<{ productList: any[] }>(
-        'https://khong-gian-truyen-backend.herokuapp.com/product?page=0&size=500&order=BY_ID'
+        environment.backendUrl + '/product?page=0&size=500&order=BY_ID'
       )
       .pipe(
         map((response) => {
@@ -46,7 +47,7 @@ export class ProductService extends ProductServiceApi {
   }
   deleteProduct(id: number): Observable<boolean> {
     return this.httpClient
-      .delete('https://khong-gian-truyen-backend.herokuapp.com/product/' + id)
+      .delete(environment.backendUrl + '/product/' + id)
       .pipe(map((response) => true));
   }
 
@@ -78,7 +79,7 @@ export class ProductService extends ProductServiceApi {
     };
     return this.httpClient
       .put<any>(
-        'https://khong-gian-truyen-backend.herokuapp.com/product/',
+        environment.backendUrl + '/product/',
         body
       )
       .pipe(map((response) => this.convert(response.product)));
