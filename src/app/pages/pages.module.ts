@@ -1,3 +1,4 @@
+import { CategoryService } from './../core/service/impl/category.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -73,7 +74,7 @@ import { DeleteCategoryEffects } from './store/effects/delete-category.effects';
       provide: CategoryServiceApi,
       useClass: environment.useMockService
         ? CategoryServiceMock
-        : CategoryServiceMock,
+        : CategoryService,
     },
   ],
 })
