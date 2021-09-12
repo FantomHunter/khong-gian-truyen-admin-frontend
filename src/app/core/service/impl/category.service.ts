@@ -23,6 +23,8 @@ export class CategoryService implements CategoryServiceApi {
       .pipe(map((response) => response.newCategory));
   }
   deleteCategory(id: number): Observable<boolean> {
-    throw new Error('Method not implemented.');
+    return this.httpClient
+      .delete(environment.backendUrl + '/category/' + id)
+      .pipe(map((res) => true));
   }
 }
