@@ -27,4 +27,9 @@ export class CategoryService implements CategoryServiceApi {
       .delete(environment.backendUrl + '/category/' + id)
       .pipe(map((res) => true));
   }
+  updateCategory(category: CategoryItem): Observable<CategoryItem> {
+    return this.httpClient
+      .put<any>(environment.backendUrl + '/category', {category})
+      .pipe(map((response) => response.category));
+  }
 }

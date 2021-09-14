@@ -5,6 +5,7 @@ import * as CreateProductAction from './create-product.actions';
 import * as DeleteCategoryAction from './delete-category.actions';
 import * as DeleteProductAction from './delete-product.actions';
 import * as UpdateProductAction from './update-product.actions';
+import * as UpdateCategoryAction from './update-category.actions';
 
 export {
   AllProductAction,
@@ -14,4 +15,5 @@ export {
   AllCategoryAction,
   CreateCategoryAction,
   DeleteCategoryAction,
+  UpdateCategoryAction,
 };

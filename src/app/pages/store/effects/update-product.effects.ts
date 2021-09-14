@@ -3,16 +3,14 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, concatMap, map } from 'rxjs/operators';
 import { ProductServiceApi } from 'src/app/core/service/product-service.api';
-import { AllProductAction, CreateProductAction, UpdateProductAction } from '../actions';
-
-
+import { AllProductAction, UpdateProductAction } from '../actions';
 
 @Injectable()
 export class UpdateProductEffects {
   updateProduct$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(UpdateProductAction.loadUpdateProducts),
-      concatMap(({product}) =>
+      concatMap(({ product }) =>
         this.productServiceApi.updateProduct(product).pipe(
           map((product) =>
             UpdateProductAction.loadUpdateProductsSuccess({ product })

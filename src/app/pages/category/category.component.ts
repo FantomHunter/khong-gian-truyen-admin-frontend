@@ -5,7 +5,12 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { CategoryItem } from 'src/app/core/model/category-item.model';
-import { AllCategoryAction, CreateCategoryAction, DeleteCategoryAction } from '../store/actions';
+import {
+  AllCategoryAction,
+  CreateCategoryAction,
+  DeleteCategoryAction,
+  UpdateCategoryAction,
+} from '../store/actions';
 import { TableDataSourceCategory } from './table-datasource.category';
 
 @Component({
@@ -45,6 +50,12 @@ export class CategoryComponent implements OnInit, AfterViewInit {
       this.store.dispatch(
         CreateCategoryAction.loadCreateCategory({
           category: { ...this.categoryForm.value },
+        })
+      );
+    } else {
+      this.store.dispatch(
+        UpdateCategoryAction.loadUpdateCategory({
+          category: this.categoryForm.value,
         })
       );
     }
