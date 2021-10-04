@@ -61,6 +61,7 @@ export class ProductService extends ProductServiceApi {
         ProductStatus[element.status.toString() as keyof typeof ProductStatus],
       type: ProductType[element.type.toString() as keyof typeof ProductType],
       totalChapter: element.totalChapter,
+      categoryList: element.categoryList
     };
   }
 

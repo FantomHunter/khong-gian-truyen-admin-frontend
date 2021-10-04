@@ -1,3 +1,5 @@
+import { delay } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
@@ -12,7 +14,7 @@ import {
   AllProductAction,
   CreateProductAction,
   DeleteProductAction,
-  UpdateProductAction
+  UpdateProductAction,
 } from '../store/actions';
 import { TableDataSourceProduct } from './table-datasouce.product';
 
@@ -62,6 +64,13 @@ export class ProductComponent implements OnInit, AfterViewInit {
   createProductForm: FormGroup;
 
   isEditing = false;
+  allFruits$: Observable<string[]> = of([
+    'Apple',
+    'Lemon',
+    'Lime',
+    'Orange',
+    'Strawberry',
+  ]).pipe(delay(3000));
   constructor(private fb: FormBuilder, private store: Store) {
     this.dataSource = new TableDataSourceProduct(store);
     this.createProductForm = fb.group({

@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { CategoryService } from './../core/service/impl/category.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -42,6 +43,7 @@ import { UpdateCategoryEffects } from './store/effects/update-category.effects';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule,
     StoreModule.forFeature(
       fromAllProduct.allProductFeatureKey,
       fromAllProduct.reducer

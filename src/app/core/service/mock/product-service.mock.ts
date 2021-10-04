@@ -19,6 +19,10 @@ export class ProductServiceMock extends ProductServiceApi {
       totalChapter: 342,
       status: ProductStatus.COMPLETED,
       type: ProductType.RAW,
+      categoryList: [
+        { id: 1, name: 'Action' },
+        { id: 2, name: 'Fantasy' },
+      ],
     },
     {
       id: 1,
@@ -28,6 +32,9 @@ export class ProductServiceMock extends ProductServiceApi {
       totalChapter: 596,
       status: ProductStatus.STOPPED,
       type: ProductType.TRANSLATED,
+      categoryList: [
+        { id: 1, name: 'Action' },
+      ],
     },
     {
       id: 2,
@@ -37,6 +44,10 @@ export class ProductServiceMock extends ProductServiceApi {
       totalChapter: 361,
       status: ProductStatus.PUBLISHING,
       type: ProductType.RAW,
+      categoryList: [
+        { id: 1, name: 'Action' },
+        { id: 2, name: 'Fantasy' },
+      ],
     },
     {
       id: 3,
@@ -46,6 +57,9 @@ export class ProductServiceMock extends ProductServiceApi {
       totalChapter: 532,
       status: ProductStatus.STOPPED,
       type: ProductType.TRANSLATED,
+      categoryList: [
+        { id: 2, name: 'Fantasy' },
+      ],
     },
     {
       id: 4,
@@ -55,6 +69,7 @@ export class ProductServiceMock extends ProductServiceApi {
       totalChapter: 723,
       status: ProductStatus.PUBLISHING,
       type: ProductType.RAW,
+      categoryList: [],
     },
     {
       id: 5,
@@ -64,6 +79,7 @@ export class ProductServiceMock extends ProductServiceApi {
       totalChapter: 359,
       status: ProductStatus.PUBLISHING,
       type: ProductType.TRANSLATED,
+      categoryList: [],
     },
     {
       id: 6,
@@ -73,6 +89,7 @@ export class ProductServiceMock extends ProductServiceApi {
       totalChapter: 956,
       status: ProductStatus.PUBLISHING,
       type: ProductType.TRANSLATED,
+      categoryList: [],
     },
     {
       id: 7,
@@ -82,6 +99,7 @@ export class ProductServiceMock extends ProductServiceApi {
       totalChapter: 398,
       status: ProductStatus.STOPPED,
       type: ProductType.CONVERTED,
+      categoryList: [],
     },
     {
       id: 8,
@@ -91,6 +109,7 @@ export class ProductServiceMock extends ProductServiceApi {
       totalChapter: 992,
       status: ProductStatus.PUBLISHING,
       type: ProductType.TRANSLATED,
+      categoryList: [],
     },
     {
       id: 9,
@@ -100,6 +119,7 @@ export class ProductServiceMock extends ProductServiceApi {
       totalChapter: 293,
       status: ProductStatus.COMPLETED,
       type: ProductType.RAW,
+      categoryList: [],
     },
     {
       id: 10,
@@ -109,6 +129,7 @@ export class ProductServiceMock extends ProductServiceApi {
       totalChapter: 747,
       status: ProductStatus.STOPPED,
       type: ProductType.CONVERTED,
+      categoryList: [],
     },
     {
       id: 11,
@@ -118,6 +139,7 @@ export class ProductServiceMock extends ProductServiceApi {
       totalChapter: 617,
       status: ProductStatus.COMPLETED,
       type: ProductType.RAW,
+      categoryList: [],
     },
     {
       id: 12,
@@ -127,6 +149,7 @@ export class ProductServiceMock extends ProductServiceApi {
       totalChapter: 506,
       status: ProductStatus.PUBLISHING,
       type: ProductType.CONVERTED,
+      categoryList: [],
     },
     {
       id: 13,
@@ -136,6 +159,7 @@ export class ProductServiceMock extends ProductServiceApi {
       totalChapter: 375,
       status: ProductStatus.PUBLISHING,
       type: ProductType.RAW,
+      categoryList: [],
     },
     {
       id: 14,
@@ -145,6 +169,7 @@ export class ProductServiceMock extends ProductServiceApi {
       totalChapter: 668,
       status: ProductStatus.STOPPED,
       type: ProductType.RAW,
+      categoryList: [],
     },
     {
       id: 15,
@@ -154,6 +179,7 @@ export class ProductServiceMock extends ProductServiceApi {
       totalChapter: 536,
       status: ProductStatus.PUBLISHING,
       type: ProductType.RAW,
+      categoryList: [],
     },
     {
       id: 16,
@@ -163,6 +189,7 @@ export class ProductServiceMock extends ProductServiceApi {
       totalChapter: 479,
       status: ProductStatus.STOPPED,
       type: ProductType.CONVERTED,
+      categoryList: [],
     },
     {
       id: 17,
@@ -172,6 +199,7 @@ export class ProductServiceMock extends ProductServiceApi {
       totalChapter: 802,
       status: ProductStatus.PUBLISHING,
       type: ProductType.CONVERTED,
+      categoryList: [],
     },
     {
       id: 18,
@@ -181,6 +209,7 @@ export class ProductServiceMock extends ProductServiceApi {
       totalChapter: 579,
       status: ProductStatus.PUBLISHING,
       type: ProductType.CONVERTED,
+      categoryList: [],
     },
     {
       id: 19,
@@ -190,6 +219,7 @@ export class ProductServiceMock extends ProductServiceApi {
       totalChapter: 276,
       status: ProductStatus.PUBLISHING,
       type: ProductType.CONVERTED,
+      categoryList: [],
     },
   ];
   createProduct(product: ProductItem): Observable<ProductItem> {
@@ -207,7 +237,9 @@ export class ProductServiceMock extends ProductServiceApi {
   }
 
   deleteProduct(id: number): Observable<boolean> {
-    this.EXAMPLE_DATA = this.EXAMPLE_DATA.filter((product) => product.id != id);
+    this.EXAMPLE_DATA = this.EXAMPLE_DATA.filter(
+      (product) => product.id !== id
+    );
     return of(true);
   }
 

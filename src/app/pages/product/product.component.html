@@ -45,6 +45,12 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
+           <!-- not work !! -->
+          <!-- <app-mat-chip-autocomplete [allFruits]="(allFruits$ |async)!"></app-mat-chip-autocomplete> -->
+           <!-- work ^^!! -->
+          <ng-container *ngIf="(allFruits$ | async) as allFruits">
+            <app-mat-chip-autocomplete [allFruits]="allFruits"></app-mat-chip-autocomplete>
+          </ng-container>
         </div>
       </mat-card-content>
       <mat-card-actions fxLayoutAlign="center">
