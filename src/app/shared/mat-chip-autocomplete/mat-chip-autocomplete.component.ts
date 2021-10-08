@@ -1,13 +1,13 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormControlDirective, FormGroup, FormGroupDirective } from '@angular/forms';
 import {
   MatAutocomplete,
   MatAutocompleteSelectedEvent,
 } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable, of } from 'rxjs';
-import { map, startWith, switchMap } from 'rxjs/operators';
+import { map, startWith, switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-mat-chip-autocomplete',
@@ -22,9 +22,11 @@ export class MatChipAutocompleteComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl();
   filteredFruits: Observable<string[]>;
-  fruits: string[] = ['Lemon'];
+  // fruits: string[] = ['Lemon'];
+  chipListCtrl = new FormControl(['Lemon']);
   // allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
   @Input() allFruits: string[] = [];
+  @Input() parentForm!: FormGroup;
 
   @ViewChild('fruitInput')
   fruitInput!: ElementRef<HTMLInputElement>;
@@ -38,9 +40,16 @@ export class MatChipAutocompleteComponent implements OnInit {
         fruit ? this._filter(fruit) : this.allFruits.slice()
       )
     );
+    this.chipListCtrl.valueChanges
+      .pipe(tap((value) => console.log('chipListCtrl: ', value)))
+      .subscribe();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.form = this.rootFromGroup.control.get('tags') as FormGroup;
+    // this.fruitCtrl = this.rootFromGroup.control.get('chipListCtrl') as FormControl;
+    this.parentForm.addControl('chipListCtrl', this.chipListCtrl);
+  }
 
   // start mat-chip
   add(event: MatChipInputEvent): void {
@@ -49,7 +58,9 @@ export class MatChipAutocompleteComponent implements OnInit {
 
     // Add our fruit
     if ((value || '').trim()) {
-      this.fruits.push(value.trim());
+      const val = [...this.chipListCtrl.value, value];
+      this.chipListCtrl.setValue(val);
+      // this.fruits.push(value.trim());
       // this.fruits = this.fruits.pipe(
       //   map((fruits) => {
       //     fruits.push(value.trim());
@@ -67,22 +78,32 @@ export class MatChipAutocompleteComponent implements OnInit {
   }
 
   remove(fruit: string): void {
-    const index = this.fruits.indexOf(fruit);
+    const index = this.chipListCtrl.value.indexOf(fruit);
+
     if (index >= 0) {
-      this.fruits.splice(index, 1);
+      const val = [...this.chipListCtrl.value];
+      val.splice(index, 1);
+      this.chipListCtrl.setValue(val);
     }
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.fruits.push(event.option.viewValue);
+    // this.fruits.push(event.option.viewValue);
     // this.fruits = this.fruits.pipe(
     //   map((fruits) => {
     //     fruits.push(event.option.viewValue);
     //     return fruits;
     //   })
     // );
+
+    const val = [...this.chipListCtrl.value];
+    val.push(event.option.viewValue);
+    this.chipListCtrl.setValue(val);
+
     this.fruitInput.nativeElement.value = '';
     this.fruitCtrl.setValue(null);
+    // console.log('parentForm', this.form);
+    // console.log('parentForm', this.parentForm);
   }
 
   private _filter(value: string): string[] {

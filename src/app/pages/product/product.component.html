@@ -49,7 +49,9 @@
           <!-- <app-mat-chip-autocomplete [allFruits]="(allFruits$ |async)!"></app-mat-chip-autocomplete> -->
            <!-- work ^^!! -->
           <ng-container *ngIf="(allFruits$ | async) as allFruits">
-            <app-mat-chip-autocomplete [allFruits]="allFruits"></app-mat-chip-autocomplete>
+            <!-- <app-mat-chip-autocomplete [allFruits]="allFruits" [parentForm]="createProductForm"></app-mat-chip-autocomplete> -->
+            <app-mat-chip-autocomplete [allFruits]="allFruits" [parentForm]="createProductForm"></app-mat-chip-autocomplete>
+            <!-- <app-mat-chip-autocomplete [allFruits]="allFruits" formControlName="chipListCtrl" ></app-mat-chip-autocomplete> -->
           </ng-container>
         </div>
       </mat-card-content>
