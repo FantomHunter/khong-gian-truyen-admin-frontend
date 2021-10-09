@@ -17,6 +17,7 @@ import {
   UpdateProductAction,
 } from '../store/actions';
 import { TableDataSourceProduct } from './table-datasouce.product';
+import { MatChipItem } from 'src/app/shared/mat-chip-autocomplete/mat-chip-autocomplete.component';
 
 interface StatusOption {
   value: ProductStatus;
@@ -64,12 +65,12 @@ export class ProductComponent implements OnInit, AfterViewInit {
   createProductForm: FormGroup;
 
   isEditing = false;
-  allFruits$: Observable<string[]> = of([
-    'Apple',
-    'Lemon',
-    'Lime',
-    'Orange',
-    'Strawberry',
+  allFruits$: Observable<MatChipItem[]> = of([
+    {key: '1', value: 'Apple'},
+    {key: '2', value: 'Lemon'},
+    {key: '3', value: 'Lime'},
+    {key: '4', value: 'Orange'},
+    {key: '5', value: 'Strawberry'},
   ]).pipe(delay(3000));
   constructor(private fb: FormBuilder, private store: Store) {
     this.dataSource = new TableDataSourceProduct(store);

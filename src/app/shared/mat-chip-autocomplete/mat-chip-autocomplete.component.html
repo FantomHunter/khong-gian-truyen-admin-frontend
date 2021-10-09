@@ -5,9 +5,9 @@
     <!-- <mat-chip-list #chipList aria-label="Fruit selection" formControlName="tags"> -->
     <mat-chip-list #chipList aria-label="Fruit selection" [formControl]="chipListCtrl">
       <!-- <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable" (removed)="remove(fruit)"> -->
-      <mat-chip *ngFor="let fruit of chipListCtrl.value" [selectable]="selectable" [removable]="removable"
+      <mat-chip *ngFor="let fruit of chipListCtrl.value" [selectable]="selectable" [removable]="removable" [value]="fruit.value"
         (removed)="remove(fruit)">
-        {{fruit}}
+        {{fruit.value}}
         <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
       </mat-chip>
       <input placeholder="New fruit..." #fruitInput [formControl]="fruitCtrl" [matAutocomplete]="auto"
@@ -16,7 +16,7 @@
     </mat-chip-list>
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
       <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-        {{fruit}}
+        {{fruit.value}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
